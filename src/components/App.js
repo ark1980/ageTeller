@@ -1,21 +1,30 @@
 import React, { Component } from 'react';
 import { Form, FormControl, Button } from 'react-bootstrap';
-import './Input.css'
+import './App.css'
+import AgeStats from './Age_stats';
 
-class Input extends Component {
+class App extends Component {
     constructor() {
         super()
 
-        this.state = { newDate: ''};
+        this.state = { 
+            newDate: '',
+            birthday: '',
+            showCongrats: false
+        };
     }
 
     showBirthday() {
-        console.log(this.state.newDate);
+       this.setState(
+           {
+            birthday: this.state.newDate,
+            showCongrats: true
+            });
     }
 
     render() {
         return(
-            <div className='input'>
+            <div className='app'>
                 <h4>Select Your Birthday From Below</h4>
                 <Form inline>
                     <FormControl 
@@ -25,11 +34,18 @@ class Input extends Component {
                     </FormControl>
                      {'  '} 
                     <Button bsStyle="primary" onClick={() => {this.showBirthday()}} >Submit</Button>
-                </Form>
+                    {
+                        (this.state.showCongrats ? 
+                            <AgeStats date={this.state.birthday}/>
+                        :
+                            <div></div>
+                        )
+                    }
+                </Form>  
             </div>
 
         )
     }
 }
 
-export default Input;
+export default App;

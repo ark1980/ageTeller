@@ -1,13 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
-import Input from './components/Input'
+import ReactDOM from 'react-dom';
+import App from './components/App';
 
-const App = () => {
-    return(
-        <div>
-            <Input />
-        </div>
-    )
-}
-
-render (<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
